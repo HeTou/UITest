@@ -19,7 +19,7 @@
         }
     }
     dependenices{
-        androidTestImplementation 'org.jacoco:org.jacoco.core:0.8.5'
+       classpath 'org.jacoco:org.jacoco.core:0.8.5'
     }
 
     需要注意的是，当需要检查UITest的覆盖率的时候需要添加一下配置，而且当配置以下config后，上面的配置就不需要了（不然会报错，也就是说想测试覆盖率时，其实只需要配置以下config就可以了）

@@ -1,0 +1,9 @@
+1、Execution failed for task ':testlib:createDebugAndroidTestCoverageReport'.
+  > java.io.IOException: No coverage data to process in directories [F:\Android\myself\UIUnitTest\testlib\build\outputs\code_coverage\debugAndroidTest\connected]
+  这里注意需要先执行 connectedDebugAndroidTest 再 createDebugCoverageReport
+
+2、java.lang.RuntimeException: Failed to initialize JaCoCo.
+Caused by: java.io.FileNotFoundException: /jacoco.exec: open failed: EROFS (Read-only file system)
+  在androidTest>
+         resources>
+              jacoco-agent.properties> 内容：output=none
