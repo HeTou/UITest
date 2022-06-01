@@ -7,3 +7,11 @@ Caused by: java.io.FileNotFoundException: /jacoco.exec: open failed: EROFS (Read
   在androidTest>
          resources>
               jacoco-agent.properties> 内容：output=none
+
+
+3、在app运行阶段出现Failed to initialize JaCoCo.
+  在main>
+         resources>
+              jacoco-agent.properties> 内容：output=none
+
+4、注意：当打包lib成aar的时候，记得要先去掉代码覆盖率的配置，不然代码会存在jacoco的代码，就可能会报上面第三点的错误

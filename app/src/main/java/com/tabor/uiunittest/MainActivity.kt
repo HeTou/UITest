@@ -17,6 +17,6 @@ class MainActivity : AppCompatActivity() {
     fun onClick(view: View) {
         Log.d("TAG","onClick")
         Toast.makeText(this,"111111",Toast.LENGTH_LONG).show()
-//        com.example.testlib.MainPesenter().add(1,1)
+        com.example.testlib.MainPesenter().add(1,1)
     }
 }
