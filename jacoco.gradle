@@ -1,0 +1,73 @@
+apply plugin: 'jacoco'
+/*
+ 1、问题1，dependsOn: 的取值到底在哪里看？？？？
+    答：在gradle对应的module—>Tasks->verification就可以看到了，createDebugCoverageReport表示的是生成UI测试覆盖率报告
+*/
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "createDebugCoverageReport"]) {
+
+
+    group = "reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    //源代码路径
+    def coverageSourceDirs = [
+            "${project.projectDir}/src/main/java",
+    ]
+    println(coverageSourceDirs)
+    //class文件路径
+    def coverageClassDirs = [
+            "${buildDir}/intermediates/classes/debug",  //java编译后文件
+            "${buildDir}/tmp/kotlin-classes/debug"      //kotlin编译后文件
+    ]
+    //过滤文件
+    def fileFilter = [
+//            '**/*Test*.*',
+//            '**/AutoValue_*.*',
+//            '**/*JavascriptBridge.class',
+//            '**/R.class',
+//            '**/R$*.class',
+//            '**/Manifest*.*',
+//            'android/**/*.*',
+//            '**/BuildConfig.*',
+//            '**/*$ViewBinder*.*',
+//            '**/*$ViewInjector*.*',
+//            '**/Lambda$*。class',
+//            '**/Lambda.class',
+//            '**/*Lambda.class',
+//            '**/*Lambda*.class',
+//            '**/*InjectAdapter.class',
+//            '**/*$ModuleAdapter.class',
+//            '**/*$ViewInjector*.class',     //这里有点问题，这应该已经被上面的 **/*$ViewInjector*.* 包含了的
+//            '**/*_MembersInjector.class',
+//            '*/*_MembersInjector*.*',
+//            '**/*_*Facttory*.*',
+//            '*/*Component*.*',
+//            '**/*Module*.*',
+
+'**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*$ViewInjector*.*'
+    ]
+
+
+    def debugTree = files(files(coverageClassDirs).files.collect {
+        fileTree(dir: it, excludes: fileFilter)
+    })
+
+    sourceDirectories.from = files(coverageSourceDirs)
+//  定义了生成报告使用的目标文件类，他的参数是一个FileCollection类型，我们可以使用FileTree来定义它，dir为目录名，includes后面为需要在报告中显示的文件，excludes为不需要在报告中显示的文件，如果不带includes及其参数会使用dir下的全部文件，否则需要按照其后的参数进行匹配仅使用符合匹配的文件，如果带excludes参数则会从已被选中的文件中在排除掉匹配其后参数的文件。<color red>目标目录需要使用编译后的class文件，即./build/intermediates/classes/debug下的文件，而不是JAVA源码文件</color>
+    classDirectories.from = debugTree
+//  executionData代码块定义了要被统计的覆盖率文件的路径，该路径下的全部文件都会被用于覆盖率的计算
+    executionData.from = fileTree(dir: "$buildDir", includes: [
+            "jacoco/*DebugUnitTest.exec",
+            "outputs/**/*coverage.ec"
+    ])
+
+    doLast {
+        println "Wrote Html converage report to ${reports.html.destination}/index.html"
+        println "Wrote xml converage report to ${reports.xml.destination}"
+    }
+}
