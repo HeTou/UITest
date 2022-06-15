@@ -1,0 +1,28 @@
+//注意在这里apply是只需要当前module的数据，
+//如果需要整个项目的sonar数据，可以在根build.gradle中 apply plugin: "org.sonarqube"
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+//      配置jacoco，再执行sonarqube命令的时候，会把本地的覆盖率文件上传。
+        property "sonar.core.codeCoveragePlugin", "jacoco"
+        //todo 测试报告绝对路径保证路径下有报告⽂件 report.html
+//        property "sonar.coverage.jacoco.xmlReportPaths","${project.projectDir}/build/reports/coverage/debug/report.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${project.projectDir}/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.sources", "src/main/java" //源码，sonar检测的源文件目录
+        property "sonar.projectVersion", project.version //版本，随意
+        property "sonar.java.binaries", "build/intermediates/javac/intranetDebug/classes"
+
+//        //以下配置在gradle.properties已经配置好了，这里可以不用配置
+//        property "sonar.host.url", "http://localhost:9000"  //sonar管理系统地址
+//        //注意：这里可以用token登录
+//        property "sonar.login" "6e22870c4b03bbbb8b52eda42e28c8661bf27dcb"
+//        //账密方式登录
+//        property "sonar.login", "admin" // sonar管理系统账号
+//        property "sonar.password", "fans1234" // sonar管理系统密码
+//
+//        property "sonar.projectKey", "UITest" //sonar平台中相对应项目的key
+//        property "sonar.projectName", "UITest" //sonar平台中相对应项目的名字
+    }
+}

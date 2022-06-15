@@ -1,0 +1,54 @@
+参考：https://blog.csdn.net/ezconn/article/details/120801850
+
+搭建步骤：
+1、引入插件
+    根build.gradle
+    buildscript {
+        repositories {
+            maven {url "https://plugins.gradle.org/m2/"}
+        }
+        dependencies {
+              classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3'
+        }
+    }
+2、配置插件参数
+   详情请看项目中的 sonarqube-config.gradle 文件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ERROR:
+
+1、SonarQube server [http://localhost:9000 ] can not be reached
+   配置的地址是否有问题？看下尾部是否存在空格（我就是后面有空字符导致的）
+2、Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.sonarsource.scanner.api.internal.IsolatedClassloader@2dab0c1e-org
+  .sonar.scanner.bootstrap.ScannerPluginRepository': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.sonarsourc
+  e.scanner.api.internal.IsolatedClassloader@2dab0c1e-org.sonar.scanner.bootstrap.ScannerPluginInstaller': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyEx
+  ception: Error creating bean with name 'org.sonarsource.scanner.api.internal.IsolatedClassloader@2dab0c1e-org.sonar.scanner.bootstrap.PluginFiles': Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springfram
+  ework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'GlobalConfiguration' defined in org.sonar.scanner.bootstrap.GlobalConfigurationProvider: Unsatisfied dependency expressed through method 'provide' parameter 0; neste
+  d exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'GlobalServerSettings' defined in org.sonar.scanner.bootstrap.GlobalServerSettingsProvider: Bean instantiation via factory method failed; nested e
+  xception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.sonar.scanner.bootstrap.GlobalServerSettings]: Factory method 'provide' threw exception; nested exception is Not authorized. Please check the properties so
+  nar.login and sonar.password.
+
+  这是由于在两个地方同时存在
+  -> gradle.properties：
+        systemProp.sonar.login=6e22870c4b03bbbb8b52eda42e28c8661bf27dcb
+  -> testlib.build.gradle:
+        sonarqube {
+            properties {
+                property "sonar.login", "admin" // sonar管理系统账号
+                property "sonar.password", "fans1234" // sonar管理系统密码
+            }
+        }
+

@@ -17,18 +17,20 @@
         jacoco{
             version "0.8.5"
         }
+         buildTypes{
+                    debug{
+                         testCoverageEnabled = true
+                    }
+                }
     }
+    根目录 gradle
     dependenices{
        classpath 'org.jacoco:org.jacoco.core:0.8.5'
     }
 
-    需要注意的是，当需要检查UITest的覆盖率的时候需要添加一下配置，而且当配置以下config后，上面的配置就不需要了（不然会报错，也就是说想测试覆盖率时，其实只需要配置以下config就可以了）
-    android{
-        buildTypes{
-            debug{
-                 testCoverageEnabled = true
-            }
-        }
-    }
+    配置文件：
+    main>
+         resources>
+              jacoco-agent.properties> 内容：output=none
 
  2、配置脚本 - 具体配置看 module目录下的  jacoco.grdle

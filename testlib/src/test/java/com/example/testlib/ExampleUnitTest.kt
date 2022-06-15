@@ -1,5 +1,7 @@
 package com.example.testlib
 
+import android.app.Application
+import android.util.Base64
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +15,9 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+//        val decode = Base64.decode("DDDDDDDDDDDDDDD", Base64.DEFAULT)
+//        val encode = Base64.encode(decode, Base64.DEFAULT)
+//        println(encode)
     }
+
 }
