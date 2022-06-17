@@ -3,7 +3,7 @@ apply plugin: 'jacoco'
  1、问题1，dependsOn: 的取值到底在哪里看？？？？
     答：在gradle对应的module—>Tasks->verification就可以看到了，createDebugCoverageReport表示的是生成UI测试覆盖率报告
 */
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "createDebugCoverageReport"]) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "createDebugCoverageReport01"]) {
 
 
     group = "reporting"

@@ -1,7 +1,7 @@
 package com.example.testlib
 
 import com.example.testlib.pesenter.MainPesenter
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class MainPesenter22Test {
@@ -18,5 +18,10 @@ class MainPesenter22Test {
         assertEquals(
             2, mainPesenter.add3(1, 1)
         )
+
+
+//        val mock = spyk(MockCls(), recordPrivateCalls = true)
+
+
     }
 }
