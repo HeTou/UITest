@@ -1,11 +1,18 @@
 apply plugin: 'jacoco'
+
+//tasks.withType(Test.class).configureEach {
+//    jacoco {
+//        excludes = ["*"]
+//    }
+//}
+
 /*
  1、问题1，dependsOn: 的取值到底在哪里看？？？？
     答：在gradle对应的module—>Tasks->verification就可以看到了，createDebugCoverageReport表示的是生成UI测试覆盖率报告
 */
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "createDebugCoverageReport01"]) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testReleaseUnitTest','createDebugCoverageReport']) {
 
-
+//
     group = "reporting"
     description = "Generate Jacoco coverage reports after running tests."
 
@@ -22,8 +29,11 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "crea
     //class文件路径
     def coverageClassDirs = [
             "${buildDir}/intermediates/classes/debug",  //java编译后文件
-            "${buildDir}/tmp/kotlin-classes/debug"      //kotlin编译后文件
+            "${buildDir}/tmp/kotlin-classes/debug",    //kotlin编译后文件
+//            "${buildDir}/intermediates/classes/release",  //java编译后文件
+//            "${buildDir}/tmp/kotlin-classes/release"      //kotlin编译后文件
     ]
+    println(coverageClassDirs)
     //过滤文件
     def fileFilter = [
 //            '**/*Test*.*',
@@ -48,8 +58,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "crea
 //            '**/*_*Facttory*.*',
 //            '*/*Component*.*',
 //            '**/*Module*.*',
-'example/testlib/activity/**',
-'*com/example/testlib/fragment/**',
+//'*com/example/testlib/fragment/**',
 
 '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*$ViewInjector*.*'
     ]
@@ -64,7 +73,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', "crea
     classDirectories.from = debugTree
 //  executionData代码块定义了要被统计的覆盖率文件的路径，该路径下的全部文件都会被用于覆盖率的计算
     executionData.from = fileTree(dir: "$buildDir", includes: [
-            "jacoco/*DebugUnitTest.exec",
+//            "jacoco/*DebugUnitTest.exec",
+            "jacoco/*ReleaseUnitTest.exec",
             "outputs/**/*coverage.ec"
     ])
 

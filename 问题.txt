@@ -20,3 +20,6 @@ Caused by: java.io.FileNotFoundException: /jacoco.exec: open failed: EROFS (Read
 5、模拟 final class
   自从Mockito v2 以来可以模拟final class, 这个功能目前正在优化阶段,并且默认是停用的.要想激活final class,在src/test/resources/mockito-extensions/或者src/mockito-extensions/目录创建名为org.mockito.plugins.MockMaker的文件,并在文件中添加一行:
   mock-maker-inline
+
+6、AGP4.1以后，当testCoverageEnabled = true,unittest会报错 java.lang.instrument.IllegalClassFormatException: Error while instrumenting com/example/testlib/pesenter/MainPesenter.
+   需要使用jacoco0.8.5版本即可以生成覆盖率，忽略报错信息（为啥？试出来的）
