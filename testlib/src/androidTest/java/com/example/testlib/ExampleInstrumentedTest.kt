@@ -45,7 +45,7 @@ class ExampleInstrumentedTest {
 
     @Test
     fun test() {
-        Espresso.onView(ViewMatchers.withId(R.id.tv)).perform(ViewActions.click())
+//        Espresso.onView(ViewMatchers.withId(R.id.tv)).perform(ViewActions.click())
     }
 
     @After

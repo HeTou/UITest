@@ -10,7 +10,7 @@ apply plugin: 'jacoco'
  1、问题1，dependsOn: 的取值到底在哪里看？？？？
     答：在gradle对应的module—>Tasks->verification就可以看到了，createDebugCoverageReport表示的是生成UI测试覆盖率报告
 */
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testReleaseUnitTest','createDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest','createDebugCoverageReport']) {
 
 //
     group = "reporting"
@@ -30,8 +30,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testReleaseUnitTest','cre
     def coverageClassDirs = [
             "${buildDir}/intermediates/classes/debug",  //java编译后文件
             "${buildDir}/tmp/kotlin-classes/debug",    //kotlin编译后文件
-//            "${buildDir}/intermediates/classes/release",  //java编译后文件
-//            "${buildDir}/tmp/kotlin-classes/release"      //kotlin编译后文件
     ]
     println(coverageClassDirs)
     //过滤文件
@@ -73,8 +71,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testReleaseUnitTest','cre
     classDirectories.from = debugTree
 //  executionData代码块定义了要被统计的覆盖率文件的路径，该路径下的全部文件都会被用于覆盖率的计算
     executionData.from = fileTree(dir: "$buildDir", includes: [
-//            "jacoco/*DebugUnitTest.exec",
-            "jacoco/*ReleaseUnitTest.exec",
+            "jacoco/*DebugUnitTest.exec",
             "outputs/**/*coverage.ec"
     ])
 

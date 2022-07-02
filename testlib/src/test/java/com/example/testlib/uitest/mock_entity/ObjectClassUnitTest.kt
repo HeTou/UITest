@@ -1,10 +1,7 @@
-package com.example.testlib.mock_entity
+package com.example.testlib.uitest.mock_entity
 
-import android.net.Uri
-import com.example.testlib.mock_entity.ObjectClass
 import io.mockk.every
 import io.mockk.mockkObject
-import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert

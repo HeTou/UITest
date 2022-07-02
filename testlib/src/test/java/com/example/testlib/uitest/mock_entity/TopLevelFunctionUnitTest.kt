@@ -1,6 +1,5 @@
-package com.example.testlib.mock_entity
+package com.example.testlib.uitest.mock_entity
 
-import com.example.testlib.mock_entity.getStaticFunction
 import io.mockk.every
 import io.mockk.mockkStatic
 import org.junit.Assert
@@ -17,7 +16,7 @@ class TopLevelFunctionUnitTest {
 
     @Test
     fun test() {
-        mockkStatic("com.example.testlib.TopLevelFunctionKt")
+        mockkStatic("com.example.testlib.uitest.mock_entity.TopLevelFunctionKt")
         every { getStaticFunction() } returns "hhah "
 
         println(getStaticFunction())

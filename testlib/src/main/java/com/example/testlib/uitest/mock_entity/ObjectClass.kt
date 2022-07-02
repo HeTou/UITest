@@ -1,4 +1,4 @@
-package com.example.testlib.mock_entity
+package com.example.testlib.uitest.mock_entity
 
 object ObjectClass {
     var name: String = "我是用于ObjectClass的name"
