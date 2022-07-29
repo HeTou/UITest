@@ -44,7 +44,13 @@ android {
     jacoco {
         version project.jacoco_version
     }
-
+//    这里可以指定源文件
+//    sourceSets {
+//        test.root 'src/tests/javaTest'
+//        test.java.srcDirs 'src/tests/javaTest/java'
+//        androidTest.root 'src/tests/androidTest'
+//        androidTest.java.srcDirs 'src/tests/androidTest/java'
+//    }
 
     testOptions {
         unitTests {

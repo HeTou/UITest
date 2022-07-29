@@ -1,4 +1,4 @@
-package com.example.testlib.uitest.idleresource
+package com.example.testlib.testEntity.idleresource
 
 import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.IdlingResource.ResourceCallback

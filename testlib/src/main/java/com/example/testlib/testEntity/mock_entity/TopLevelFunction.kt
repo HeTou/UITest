@@ -1,4 +1,4 @@
-package com.example.testlib.uitest.mock_entity
+package com.example.testlib.testEntity.mock_entity
 
 fun getStaticFunction(): String {
     return getStaticFunction2()

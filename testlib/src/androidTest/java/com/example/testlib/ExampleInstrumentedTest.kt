@@ -1,15 +1,12 @@
 package com.example.testlib
 
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.IdlingResource
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.testlib.activity.MainActivity
-import com.example.testlib.uitest.idleresource.SimpleIdlingResource
+import com.example.testlib.testEntity.idleresource.SimpleIdlingResource
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

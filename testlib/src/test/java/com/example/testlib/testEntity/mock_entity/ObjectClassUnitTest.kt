@@ -1,4 +1,4 @@
-package com.example.testlib.uitest.mock_entity
+package com.example.testlib.testEntity.mock_entity
 
 import io.mockk.every
 import io.mockk.mockkObject
@@ -53,10 +53,10 @@ class ObjectClassUnitTest {
         Assert.assertEquals("我是修改后的私有方法返回的", objectFunction)
     }
 
-    @Test
-    fun test_private_attr() {
-//        mockkObject(ObjectClass)
-//        every { ObjectClass getProperty "gender" } returns 1
-//        Assert.assertEquals(1,ObjectClass.getPublicGender())
-    }
+//    @Test
+//    fun test_private_attr() {
+//        val spyk = spyk(ObjectClass, recordPrivateCalls = true)
+//        every { spyk getProperty "gender" } returns 1
+//        Assert.assertEquals(1,spyk.getPublicGender())
+//    }
 }

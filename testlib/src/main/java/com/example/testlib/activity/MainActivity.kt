@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.test.espresso.IdlingResource
-import com.example.testlib.uitest.idleresource.MessageDelayer
+import com.example.testlib.testEntity.idleresource.MessageDelayer
 import com.example.testlib.R
 import com.example.testlib.fragment.MainFragment
-import com.example.testlib.uitest.idleresource.SimpleIdlingResource
+import com.example.testlib.testEntity.idleresource.SimpleIdlingResource
 
 class MainActivity : AppCompatActivity(), MessageDelayer.DelayerCallback {
     override fun onCreate(savedInstanceState: Bundle?) {

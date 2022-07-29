@@ -1,0 +1,23 @@
+name: Danger JS
+# 触发 workflow 的事件，事件表请看：https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on: [ pull_request ]
+# 一个workflow由执行的一项或多项job
+jobs:
+  # 一个job任务，任务名为test
+  test:
+    #运行在最新版ubuntu系统中
+    runs-on: ubuntu-latest
+    #步骤合集
+    steps:
+      #新建一个名为checkout_actions的步骤
+      -name:Use Node.js 12.x
+      -uses: actions/checkout@master
+
+        - name: Use Node.js 12.x
+        - uses: actions/setup-node@v1
+                  - with:
+                  - node-version: 12.x
+                  - - name: Danger
+                  - run: npx danger ci
+                  - env:
+                  - GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

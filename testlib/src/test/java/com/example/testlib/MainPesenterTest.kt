@@ -1,6 +1,7 @@
 package com.example.testlib
 
 import com.example.testlib.pesenter.MainPesenter
+import io.mockk.mockkConstructor
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,4 +21,5 @@ class MainPesenterTest {
 
 
     }
+
 }

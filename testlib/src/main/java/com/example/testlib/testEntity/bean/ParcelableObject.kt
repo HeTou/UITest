@@ -1,4 +1,4 @@
-package com.example.testlib.uitest.bean
+package com.example.testlib.testEntity.bean
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,4 +1,4 @@
-package com.example.testlib.uitest.mock_entity
+package com.example.testlib.testEntity.mock_entity
 
 import io.mockk.every
 import io.mockk.mockkStatic

@@ -1,4 +1,4 @@
-package com.example.testlib.uitest.idleresource
+package com.example.testlib.testEntity.idleresource
 
 import android.os.Handler
 
